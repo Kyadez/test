@@ -1,0 +1,764 @@
+/* =================================
+   0. DESIGN TOKENS
+   Palette: your original greens + water/mud tones from the hero art.
+   Text pairs checked at 4.5:1 or higher.
+================================= */
+
+:root {
+    /* Color */
+    --color-primary: #174c35;          /* deep mangrove green */
+    --color-primary-dark: #0f3a29;     /* button hover */
+    --color-on-primary: #ffffff;
+    --color-background: #f5f8f4;       /* leaf mist */
+    --color-foreground: #26352c;       /* ink */
+    --color-muted: #e0eee3;            /* tide pool (hero) */
+    --color-surface-alt: #edf4ee;      /* alternate section */
+    --color-card: #ffffff;
+    --color-muted-foreground: #4a5d52; /* secondary text */
+    --color-border: #c5d6c9;
+    --color-border-strong: #7a9585;    /* input / frame borders (3:1+) */
+    --color-ring: #174c35;             /* focus ring on light areas */
+    --color-ring-on-dark: #a8d5b5;     /* focus ring on green areas */
+    --color-hover-on-dark: #a8d5b5;
+    --color-deep: #0f3a29;             /* hero, header, footer */
+    --color-accent: #e9b872;           /* shell gold, on dark only */
+    --color-sand: #f6e9cf;
+    --level-low: #4f8f73;
+    --level-medium: #b7791f;
+    --level-high: #174c35;
+    --radius-lg: 20px;
+    --shadow-soft: 0 10px 30px rgba(15, 58, 41, 0.10);
+
+    /* Hero art only */
+    --color-leaf: #2d6a4a;
+    --color-water: #bcd9c8;
+    --color-mud: #d6c9a6;
+    --color-shell: #ece0bd;
+
+    /* Type */
+    --font-heading: "Crimson Pro", Georgia, "Times New Roman", serif;
+    --font-body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+    /* Shape */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+
+    /* Layout */
+    --header-height: 5rem;
+}
+
+
+/* =================================
+   1. GENERAL SETTINGS
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + 1rem);
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    line-height: 1.65;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    font-weight: 600;
+    line-height: 1.15;
+}
+
+p {
+    max-width: 62ch;
+}
+
+.container {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 5vw, 3rem);
+}
+
+/* Visible keyboard focus on every interactive element */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--color-ring);
+    outline-offset: 3px;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 200;
+    padding: 0.75rem 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 1rem;
+    outline: 3px solid var(--color-ring-on-dark);
+}
+
+
+/* =================================
+   2. NAVIGATION BAR
+================================= */
+
+header {
+    background-color: var(--color-deep);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--color-on-primary);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: var(--header-height);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+}
+
+nav ul a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 0.875rem;
+    border-radius: var(--radius-sm);
+    color: var(--color-on-primary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color 0.2s ease;
+}
+
+nav ul a:hover {
+    color: var(--color-hover-on-dark);
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+header a:focus-visible {
+    outline-color: var(--color-ring-on-dark);
+}
+
+
+/* =================================
+   2.1 WEBSITE LOGO
+================================= */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--color-on-primary);
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.logo img {
+    width: 65px;
+    height: 55px;
+    object-fit: contain;
+    display: block;
+}
+
+
+/* =================================
+   3. MAIN SECTIONS
+================================= */
+
+.section {
+    padding-block: clamp(4rem, 9vw, 6.5rem);
+}
+
+.section-alt {
+    background-color: var(--color-surface-alt);
+}
+
+.section h2 {
+    font-size: clamp(1.9rem, 1.4rem + 1.6vw, 2.6rem);
+    margin-bottom: 1rem;
+}
+
+.section h2 + p {
+    color: var(--color-foreground);
+}
+
+
+/* =================================
+   3.1 BUTTONS
+================================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.7rem 1.4rem;
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-card);
+}
+
+
+/* =================================
+   4. HOMEPAGE
+================================= */
+
+.hero {
+    background-color: var(--color-deep);
+    color: #ffffff;
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+}
+
+.hero-copy {
+    animation: rise 0.6s ease-out;
+}
+
+.hero h1 {
+    color: #ffffff;
+    font-size: clamp(2.75rem, 1.4rem + 5.4vw, 5.5rem);
+    letter-spacing: -0.015em;
+    margin-bottom: 1.25rem;
+    max-width: 12ch;
+}
+
+.hero h1 em {
+    color: var(--color-accent);
+}
+
+.hero .lead {
+    margin-bottom: 1.75rem;
+    font-size: 1.25rem;
+    max-width: 34ch;
+    color: #d7e8dc;
+}
+
+.btn-gold {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-deep);
+}
+
+.btn-gold:hover {
+    background-color: #f3cb94;
+    border-color: #f3cb94;
+}
+
+.btn-ghost {
+    border-color: #ffffff;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.btn-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.hero a:focus-visible {
+    outline-color: var(--color-ring-on-dark);
+}
+
+/* The search tool card */
+.tool {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-card);
+    color: var(--color-foreground);
+    }
+
+#data .tool {
+    max-width: 52rem;
+    margin-top: 2rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.tool .search-row {
+    max-width: none;
+}
+
+.tool .result {
+    max-width: none;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.tool .panel {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+}
+
+
+/* =================================
+   5. ABOUT SECTION
+================================= */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+}
+
+.about-grid p + p {
+    margin-top: 1rem;
+}
+
+
+.tile {
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-card);
+    box-shadow: var(--shadow-soft);
+}
+
+.tile-lead h2 {
+    margin-bottom: 1rem;
+}
+
+.tile-lead p + p {
+    margin-top: 1rem;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.tile-wide {
+    grid-column: span 2;
+}
+
+.facts-grid dt {
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+}
+
+.facts-grid dd {
+    margin-top: 0.25rem;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-primary);
+}
+
+.tile-deep {
+    background-color: var(--color-deep);
+    border-color: var(--color-deep);
+}
+
+.tile-deep dt {
+    color: var(--color-hover-on-dark);
+}
+
+.tile-deep dd {
+    color: #ffffff;
+    font-size: 2.1rem;
+}
+
+.tile-tide {
+    background-color: var(--color-muted);
+}
+
+.tile-sand {
+    background-color: var(--color-sand);
+}
+
+.gauge[data-level="low"] .seg.on { background-color: var(--level-low); }
+.gauge[data-level="medium"] .seg.on { background-color: var(--level-medium); }
+.gauge[data-level="high"] .seg.on { background-color: var(--level-high); }
+
+.badge-medium {
+    background-color: var(--color-sand);
+    border-color: var(--level-medium);
+    color: #5a3d08;
+}
+
+/* Scroll-in (only when JS is running; skipped for reduced motion) */
+.js .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.js .reveal.in {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* =================================
+   7. GASTROPOD DATA CENTER
+================================= */
+
+.search {
+    margin-top: 2rem;
+}
+
+.search label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.search-row {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 36rem;
+}
+
+.search-row input {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    padding: 0.6rem 0.9rem;
+    border: 2px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-card);
+    color: var(--color-foreground);
+    font: inherit;
+}
+
+.notice,
+.result-empty {
+    margin-top: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+}
+
+.result {
+    margin-top: 1.5rem;
+    max-width: 48rem;
+}
+
+.panel {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.result-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.result-head h3 {
+    font-size: 1.9rem;
+}
+
+/* Impact is shown by words and fill, never by color alone */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0 0.85rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9375rem;
+}
+
+.badge-high {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+}
+
+.badge-medium {
+    background-color: var(--color-muted);
+    color: var(--color-primary);
+}
+
+.badge-low {
+    background-color: transparent;
+    color: var(--color-primary);
+}
+
+.interpretation {
+    margin-bottom: 1rem;
+    padding: 1rem 1.25rem;
+    border-left: 5px solid var(--color-primary);
+    background-color: var(--color-surface-alt);
+}
+
+.interpretation h4 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+}
+
+.interpretation small {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--color-muted-foreground);
+}
+
+summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+summary:focus-visible {
+    outline: 3px solid var(--color-ring);
+    outline-offset: 3px;
+}
+
+.icon {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-right: 0.5rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Quick-search chips (real buttons: they run a search) */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.chips-label {
+    margin-right: 0.25rem;
+    font-size: 0.9375rem;
+    color: var(--color-muted-foreground);
+}
+
+.chip {
+    min-height: 44px;
+    padding: 0 1.1rem;
+    border: 2px solid var(--color-border-strong);
+    border-radius: 999px;
+    background-color: var(--color-card);
+    color: var(--color-primary);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.chip:hover {
+    background-color: var(--color-muted);
+}
+
+/* Impact gauge: three segments plus text labels */
+.gauge-wrap {
+    margin-bottom: 1.25rem;
+}
+
+.gauge,
+.gauge-labels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    max-width: 22rem;
+}
+
+.seg {
+    height: 10px;
+    border-radius: 999px;
+    background-color: var(--color-border);
+    transition: background-color 0.3s ease;
+}
+
+.seg.on {
+    background-color: var(--color-primary);
+}
+
+.gauge-labels {
+    margin-top: 0.35rem;
+    font-size: 0.875rem;
+    color: var(--color-muted-foreground);
+}
+
+.gauge-labels .current {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.panel {
+    animation: rise 0.25s ease-out;
+}
+
+@keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+}
+
+
+/* =================================
+   8. FOOTER
+================================= */
+
+footer {
+    background-color: var(--color-deep);
+    color: var(--color-on-primary);
+    padding-block: 1.75rem;
+    font-size: 0.9375rem;
+}
+
+footer p {
+    max-width: none;
+}
+
+
+/* =================================
+   9. RESPONSIVE DESIGN
+================================= */
+
+@media (max-width: 900px) {
+
+    .hero-grid,
+    .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    :root {
+        --header-height: 4rem;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-block: 0.75rem;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.125rem;
+    }
+
+    nav ul a {
+        padding: 0 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .logo img {
+        width: 55px;
+        height: 48px;
+    }
+
+    @media (max-width: 560px) {
+
+    .facts-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tile-wide {
+        grid-column: auto;
+    }
+}
+
+/* Keep the header pinned on larger screens only */
+@media (min-width: 769px) {
+
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+}
+
+
+/* =================================
+   10. REDUCED MOTION
+================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .js .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+.hero .tile {
+    box-shadow: none;
+}

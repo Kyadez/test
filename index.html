@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mangrove &amp; Gastropod Research | Masbate</title>
+    <meta name="description" content="A school research project on the relationship between mangrove ecosystems and gastropod biodiversity in Masbate, Philippines.">
+    <meta name="theme-color" content="#174c35">
+
+    <link rel="icon" href="assets/Images/echidlia-logo.png">
+
+    <!-- Fonts: Crimson Pro (headings) + Atkinson Hyperlegible (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Crimson+Pro:wght@400;500;600;700&display=swap">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="container">
+            <nav aria-label="Main">
+                <a href="#home" class="logo">
+                    <img src="assets/Images/echidlia-logo.png" alt="" class="logo-image">
+                    <span>PlaceHolder</span>
+                </a>
+
+                <ul>
+                    <li><a href="#home">Main</a></li>
+                    <li><a href="#data">Data Center</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main">
+
+        <!-- Part 1: Intro to gastropods -->
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <h1>What lives in Masbate&rsquo;s <em>mangroves</em>?</h1>
+                    <p class="lead">
+                        Gastropods are a group of mollusks that includes snails
+                        and slugs. Our study looks at the gastropods living in
+                        the mangroves of Masbate.
+                    </p>
+                    <div class="actions">
+                        <a class="btn btn-gold" href="#data">Open the data center</a>
+                        <a class="btn btn-ghost" href="#about">About our research</a>
+                    </div>
+                </div>
+
+                <dl class="facts-grid">
+                    <div class="tile tile-wide tile-tide"><dt>What they are</dt><dd>Mollusks that include snails and slugs</dd></div>
+                    <div class="tile tile-sand"><dt>How they move</dt><dd>On one muscular foot</dd></div>
+                    <div class="tile"><dt>Their shell</dt><dd>Usually one, often coiled</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- Part 2: The data center -->
+        <section id="data" class="section">
+            <div class="container">
+                <h2>Gastropod data center</h2>
+                <p>Search a gastropod to see whether its impact on the mangrove is low, medium, or high.</p>
+
+                <div class="tool">
+                    <form class="search" id="search-form" role="search">
+                        <label for="species-search">Gastropod name</label>
+                        <div class="search-row">
+                            <input type="search" id="species-search" list="species-list" autocomplete="off"
+                                placeholder="Type High, Medium or Low">
+                            <button type="submit" class="btn btn-primary"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Search</button>
+                        </div>
+                        <datalist id="species-list"></datalist>
+                    </form>
+                    <div class="chips" role="group" aria-label="Quick searches">
+                        <span class="chips-label">Try:</span>
+                        <button type="button" class="chip" data-query="High">High</button>
+                        <button type="button" class="chip" data-query="Medium">Medium</button>
+                        <button type="button" class="chip" data-query="Low">Low</button>
+                    </div>
+                    <p class="notice">Placeholders for now.</p>
+                    <div class="result" id="result" aria-live="polite">
+                        <p class="result-empty">Search a name to see its impact.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 3: About our research -->
+        <section id="about" class="section section-alt">
+            <div class="container about-grid">
+                <div class="tile tile-lead reveal">
+                    <h2>About our research</h2>
+                    <p>
+                        Mangrove forests shelter many small animals, including
+                        snails. We want to find out how the condition of a
+                        mangrove area relates to the variety of gastropods
+                        living in it.
+                    </p>
+                </div>
+
+                <dl class="facts-grid">
+                    <div class="tile tile-deep tile-wide reveal"><dt>Location</dt><dd>N/A</dd></div>
+                    <div class="tile tile-tide reveal"><dt>Habitat</dt><dd>N/A</dd></div>
+                    <div class="tile tile-sand reveal"><dt>Organisms</dt><dd>N/A</dd></div>
+                    <div class="tile reveal"><dt>Research team</dt><dd>N/A</dd></div>
+                    <div class="tile reveal"><dt>School</dt><dd>N/A</dd></div>
+                </dl>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Mangrove &amp; Gastropod Research. Team: N/A. School: N/A.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
